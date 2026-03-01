@@ -295,7 +295,6 @@ def get_media_group_by_message_id(message_id: int) -> tuple:
             SELECT media_group_id FROM media_group_photos
             WHERE message_id = %s
         ''', (message_id,))
-    ''', (message_id,))
     result = cursor.fetchone()
     
     if not result:
@@ -317,8 +316,6 @@ def get_media_group_by_message_id(message_id: int) -> tuple:
             WHERE media_group_id = %s
             ORDER BY message_id
         ''', (media_group_id,))
-        ORDER BY message_id
-    ''', (media_group_id,))
     photos = cursor.fetchall()
     conn.close()
     
@@ -362,8 +359,6 @@ def delete_media_group_photos(media_group_id: str):
             DELETE FROM media_group_photos
             WHERE media_group_id = %s
         ''', (media_group_id,))
-        WHERE media_group_id = ?
-    ''', (media_group_id,))
     conn.commit()
     conn.close()
     
@@ -458,7 +453,6 @@ def get_sale_receipt_ocr(message_id: int) -> list:
             WHERE message_id = %s
             ORDER BY receipt_index
         ''', (message_id,))
-    ''', (message_id,))
     results = cursor.fetchall()
     conn.close()
     
@@ -498,7 +492,6 @@ def get_sale_receipt_ocr_by_media_group(media_group_id: str) -> list:
             WHERE media_group_id = %s
             ORDER BY receipt_index
         ''', (media_group_id,))
-    ''', (media_group_id,))
     results = cursor.fetchall()
     conn.close()
     
